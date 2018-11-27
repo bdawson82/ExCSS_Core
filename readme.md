@@ -1,4 +1,4 @@
-# ExCSS With Some Pull Requests include to make it useable *
+# ExCSS With Updates for .NET Core
 
 [ExCSS](https://github.com/TylerBrinks/ExCSS) is great (as v2 was), but needs some changes from the current master to make it useable (just a couple of bit's made public and moved to .NET Standard 2.0).
 
