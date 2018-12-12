@@ -9,18 +9,22 @@ namespace ExCSS.RealWorldTest
     {
         public void WorkWithExCss()
         {
-            // With nuget package (3.0.0) ref: https://github.com/TylerBrinks/ExCSS
-
-
             // Could read in a file here...
-            string css = "html{ background-color: #5a5eed; } h2{ background-color: red }";
+            string css = "html{ background-color: #5a5eed; color: #FFFFFF; margin: 5px; } h2{ background-color: red }";
 
             var stylesheet = new ExCSS.StylesheetParser().Parse(css);
 
-            // Get the info out.
-            var info = stylesheet.Children.First(c => ((ExCSS.StyleRule)c).SelectorText == "html") as ExCSS.StyleRule;
-            var selector = info.SelectorText;
-            var firstCssProperty = info.Style.BackgroundColor;
+			// Get the info out - long hand
+			//var info = stylesheet.Children.First(c => ((ExCSS.StyleRule)c).SelectorText == "html") as ExCSS.StyleRule;
+			//var selector = info.SelectorText;
+			//var firstCssProperty = info.Style.BackgroundColor;
+
+			// Get the info out - New way
+			var info = stylesheet.StyleRules.First() as ExCSS.StyleRule;
+			var selector = info.SelectorText;
+			var backgroundColor = info.Style.BackgroundColor;
+			var foregroundColor = info.Style.Color;
+			var margin = info.Style.Margin;
 
 
             //// Create a new stylesheet
