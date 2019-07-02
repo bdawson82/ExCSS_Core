@@ -555,6 +555,25 @@ h1 { color: blue }");
         }
 
         [Fact]
+        public void CssMarginAllImportant()
+        {
+            var names = new[] { "margin-top", "margin-right", "margin-bottom", "margin-left" };
+            var decls = ParseDeclarations("margin: 20px !important;");
+            Assert.NotNull(decls);
+            Assert.Equal(4, decls.Length);
+
+            for (int i = 0; i < decls.Length; i++)
+            {
+                var propertyName = decls[i];
+                var decl = decls.GetProperty(propertyName);
+                Assert.Equal(names[i], decl.Name);
+                Assert.Equal(propertyName, decl.Name);
+                Assert.True(decl.IsImportant);
+                Assert.Equal("20px", decl.Value);
+            }
+        }
+
+        [Fact]
         public void CssSeveralFontFamily()
         {
             var prop = ParseDeclaration("font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif");
